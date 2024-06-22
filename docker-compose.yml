@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: g3user
+      POSTGRES_PASSWORD: g3password
+      POSTGRES_DB: g3db
+    ports:
+      - 5432:5432
