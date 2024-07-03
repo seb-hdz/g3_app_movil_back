@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get } from '@nestjs/common';
-import { Param, Post, Put, Query } from '@nestjs/common';
+import { Param, Post, Put } from '@nestjs/common';
 import { UsersService } from './users.service';
 
 import { CreateUserDTO, UpdateUserDTO } from 'src/dto/user.dto';
@@ -9,7 +9,7 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get()
-  getAllUsers(@Query() query: any) {
+  getAllUsers() {
     return this.usersService.getUsers();
   }
 

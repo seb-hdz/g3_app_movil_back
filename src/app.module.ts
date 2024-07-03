@@ -6,6 +6,7 @@ import { UsersModule } from './resources/users/users.module';
 import { AuthModule } from './resources/auth/auth.module';
 import { ScansModule } from './resources/scans/scans.module';
 import { CloudinaryModule } from './resources/cloudinary/cloudinary.module';
+import { ResultsModule } from './resources/results/results.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { CloudinaryModule } from './resources/cloudinary/cloudinary.module';
     ScansModule,
     CloudinaryModule,
     MulterModule.register({ storage: memoryStorage() }),
+    ResultsModule,
   ],
   controllers: [],
   providers: [],

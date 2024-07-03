@@ -1,5 +1,5 @@
-import { Controller, Get, Headers, Post } from '@nestjs/common';
-import { Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Headers, Post, Query } from '@nestjs/common';
+import { Body, Param, Delete } from '@nestjs/common';
 import { ScansService } from './scans.service';
 import { CreateScanDTO } from 'src/dto/scans.dto';
 
@@ -14,9 +14,10 @@ export class ScansController {
   }
 
   @Get()
-  findAll(@Headers() headers) {
+  findAll(@Headers() headers, @Query() query) {
     const { authorization: userId } = headers;
-    return this.scansService.findAll(userId);
+    const { limit } = query ?? {};
+    return this.scansService.findAll(userId, limit);
   }
 
   @Get(':id')

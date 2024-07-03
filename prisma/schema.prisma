@@ -20,6 +20,7 @@ model User {
   password   String?
   age        Int?
   scans      Scan[]
+  results    Result[]
   created_at DateTime @default(now())
 }
 
@@ -33,9 +34,12 @@ model Scan {
 }
 
 model Result {
-  id        String  @id @default(uuid())
+  id        String   @id @default(uuid())
   scanId    String
   hasCancer Boolean
   scanUrl   String?
-  scan      Scan    @relation(fields: [scanId], references: [id])
+  scan      Scan     @relation(fields: [scanId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  updatedAt DateTime @updatedAt
 }

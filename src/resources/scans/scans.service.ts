@@ -17,8 +17,12 @@ export class ScansService {
     return this.prisma.scan.create({ data: { url, userId } });
   }
 
-  async findAll(userId: string) {
-    const found = await this.prisma.scan.findMany({ where: { userId } });
+  async findAll(userId: string, limit?: number) {
+    const take = limit ? { take: +limit } : undefined;
+    const found = await this.prisma.scan.findMany({
+      where: { userId },
+      ...take,
+    });
     return found;
   }
 
