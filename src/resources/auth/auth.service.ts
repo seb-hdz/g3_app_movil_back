@@ -1,6 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthUserDTO } from 'src/dto/user.dto';
 import { PrismaService } from 'src/prisma.service';
+import { hashCode } from 'src/utils/global.utils';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +16,7 @@ export class AuthService {
       throw new UnauthorizedException('No user found with this email');
     }
 
-    if (password !== user.password) {
+    if (password !== `${hashCode(user.password)}`) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
